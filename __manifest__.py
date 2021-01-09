@@ -1,0 +1,20 @@
+{
+    'name': 'Typewiser Course',
+    'summary': 'Course Module',
+    'version': '11.0',
+    'author': 'Nirmal',
+    'license': 'AGPL-3',
+    'category': '',
+    "depends": ["base","website",],
+    'data': [
+        'security/security.xml',
+        'security/ir.model.access.csv',
+        'report/report.xml',
+        'report/course_report_temp.xml',
+        'views/room_view.xml',
+        'views/course_view.xml',
+        'views/partner_view.xml',
+        'views/menu_view.xml',
+    ],
+    'installable': True,
+}

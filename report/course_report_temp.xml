@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="report_course_info_document">
+    <t t-call="web.external_layout">
+        <t t-set="doc" t-value="doc.with_context({})" />
+        <div class="page">
+            <div class="oe_structure"/>
+            <span><b>Course # </b></span>
+            <span t-field="doc.name"/>
+
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>Lessons</th>
+                    </tr>
+               </thead>
+            </table>
+
+            <t t-foreach="doc.lessons_ids" t-as="lessons">
+                <table class="table table-condensed">
+                   <tbody class="lessons_tbody">
+                        <tr>
+                            <td><span t-field="lessons.name"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </t>
+            <div class="oe_structure"/>
+        </div>
+    </t>
+</template>
+
+
+<template id="report_course_info">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="tw_course.report_course_info_document"/>
+        </t>
+    </t>
+</template>
+
+</odoo>

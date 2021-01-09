@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Lessons Tree ,Form & Action View       -->
+        <record id="view_lessons_info_tree" model="ir.ui.view">
+            <field name="name">lessons.info.tree</field>
+            <field name="model">lessons.info</field>
+            <field name="arch" type="xml">
+                <tree string="Lessons">
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_lessons_info_form" model="ir.ui.view">
+            <field name="name">lessons.info.form</field>
+            <field name="model">lessons.info</field>
+            <field name="arch" type="xml" >
+                <form string="Lessons">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_lessons_info" model="ir.actions.act_window">
+            <field name="name">Lessons</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">lessons.info</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_lessons_info_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Locations Tree ,Form & Action View       -->
+        <record id="view_locations_info_tree" model="ir.ui.view">
+            <field name="name">locations.info.tree</field>
+            <field name="model">locations.info</field>
+            <field name="arch" type="xml">
+                <tree string="Locations">
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_locations_info_form" model="ir.ui.view">
+            <field name="name">locations.info.form</field>
+            <field name="model">locations.info</field>
+            <field name="arch" type="xml" >
+                <form string="Locations">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="lessons_ids" widget="many2many_tags" options="{'no_open':True, 'no_create_edit': True}"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_locations_info" model="ir.actions.act_window">
+            <field name="name">Locations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">locations.info</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_locations_info_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Rooms Tree ,Form & Action View       -->
+        <record id="view_room_info_tree" model="ir.ui.view">
+            <field name="name">rooms.info.tree</field>
+            <field name="model">rooms.info</field>
+            <field name="arch" type="xml">
+                <tree string="Rooms">
+                    <field name="name" />
+                    <field name="date" />
+                    <field name="locations_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_room_info_form" model="ir.ui.view">
+            <field name="name">rooms.info.form</field>
+            <field name="model">rooms.info</field>
+            <field name="arch" type="xml" >
+                <form string="Rooms">
+                <header>
+                    <button name="button_confirm" class="oe_highlight" type="object" string="Confirm" states="draft"/>
+                    <button name="button_cancel" class="oe_highlight" type="object" string="Cancel" states="draft"/>
+                    <button name="button_reset_to_draft" class="oe_highlight" type="object" string="Reset To Draft" states="confirm,cancel"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="locations_id" options="{'no_open':True, 'no_create_edit': True}" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="lessons_ids" widget="many2many_tags" force_save="1" options="{'no_open':True, 'no_create_edit': True}" readonly="1"/>
+                            <field name="date" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Attendees">
+                            <field name="attendees_lines" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                <tree string="Attendees Lines" editable="bottom">
+                                    <field name="attendees_name_id" required="1" options="{'no_open':True, 'no_create_edit': True}"/>
+                                </tree>
+                                <form string="Attendees Lines">
+                                    <group>
+                                        <field name="attendees_name_id" required="1" options="{'no_open':True, 'no_create_edit': True}"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_room_info" model="ir.actions.act_window">
+            <field name="name">Rooms</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rooms.info</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_room_info_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

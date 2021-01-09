@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem id="course_menu_main" name="Course" sequence="3"/>
+
+        <menuitem id="course_menu" name="Course" parent="course_menu_main" sequence="0"/>
+        <menuitem id="course_menu_sub" name="Course" parent="course_menu" action="action_course_info" sequence="0"/>
+
+        <menuitem id="room_menu" name="Rooms" parent="course_menu_main" sequence="1"/>
+        <menuitem id="room_menu_sub" name="Rooms" parent="room_menu" action="action_room_info" sequence="0"/>
+
+        <menuitem id="configuration_menu" name="Configuration" parent="course_menu_main" sequence="2"/>
+        <menuitem id="configuration_menu_lessons" name="Lessons" parent="configuration_menu" action="action_lessons_info" sequence="0"/>
+        <menuitem id="configuration_menu_locations" name="Locations" parent="configuration_menu" action="action_locations_info" sequence="1"/>
+        <menuitem id="configuration_menu_instructor" name="Instructor" parent="configuration_menu" action="action_instructor_info" sequence="2"/>
+
+    </data>
+</odoo>

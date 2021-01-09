@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+            id="action_report_course"
+            string="Course"
+            model="course.info"
+            report_type="qweb-pdf"
+            file="tw_course.report_course_info"
+            name="tw_course.report_course_info"
+        />
+
+    </data>
+</odoo>

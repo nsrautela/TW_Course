@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_lessons_info_user,access_lessons_info,model_lessons_info,base.group_user,1,1,1,1
+access_locations_info_user,access_locations_info,model_locations_info,base.group_user,1,1,1,1
+access_rooms_info_user,access_rooms_info,model_rooms_info,base.group_user,1,1,1,1
+access_instructor_info_user,access_instructor_info,model_instructor_info,base.group_user,1,1,1,1
+access_course_info_user,access_course_info,model_course_info,base.group_user,1,1,1,1
+access_attendees_lines_user,access_attendees_lines,model_attendees_lines,base.group_user,1,1,1,1
+
+
+
